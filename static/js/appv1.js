@@ -1,5 +1,5 @@
 d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/datavizclassroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then(function(data) {
-Console.log(data)
+  // Code for creating the chart will go here
 });
 function updateChart(selectedIndividual) {
   // Filter the data for the selected individual
@@ -69,7 +69,36 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/datavizclassroom/v1.1/
         r: 100,
         t: 100,
         b: 100
-      }};
+        function updateBubbleChart(selectedIndividual) {
+          // Filter the data for the selected individual
+          let individualData = data.samples.filter(obj => obj.id === selectedIndividual)[0];
+        
+          let trace1 = {
+            x: individualData.otu_ids,
+            y: individualData.sample_values,
+            text: individualData.otu_labels,
+            mode: "markers",
+            marker: {
+              size: individualData.sample_values,
+              color: individualData.otu_ids,
+              colorscale: "Earth"
+            }
+          };
+        
+          let layout = {
+            title: `Samples for Individual ${selectedIndividual}`,
+            xaxis: {
+              title: "OTU ID"
+            },
+            yaxis: {
+              title: "Sample Values"
+            }
+          };
+        
+          let chartData = [trace1];
+        
+          Plotly.newPlot("bubble", chartData, layout);
+        }
         // Event listener for dropdown change
 dropdown.on("change", function() {
   let selectedIndividual = d3.select(this).property("value");
@@ -239,3 +268,37 @@ function updateDashboard(selectedIndividual) {
     x: sortedData,
     y: individualData.otu_ids.slice(0, 10).map(otuId => `OTU ${otuId}`),
     text: individualData.otu_labels.slice(0, 
+
+
+
+
+      function updateBubbleChart(selectedIndividual) {
+        // Filter the data for the selected individual
+        let individualData = data.samples.filter(obj => obj.id === selectedIndividual)[0];
+      
+        let trace1 = {
+          x: individualData.otu_ids,
+          y: individualData.sample_values,
+          text: individualData.otu_labels,
+          mode: "markers",
+          marker: {
+            size: individualData.sample_values,
+            color: individualData.otu_ids,
+            colorscale: "Earth"
+          }
+        };
+      
+        let layout = {
+          title: `Samples for Individual ${selectedIndividual}`,
+          xaxis: {
+            title: "OTU ID"
+          },
+          yaxis: {
+            title: "Sample Values"
+          }
+        };
+      
+        let chartData = [trace1];
+      
+        Plotly.newPlot("bubble", chartData, layout);
+      }
