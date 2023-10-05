@@ -1,4 +1,4 @@
-# belly-button-challenge
+# Belly-Button-Challenge
 utilize various tools to finish this prtoject 
 review recording class
 looked at class samples
